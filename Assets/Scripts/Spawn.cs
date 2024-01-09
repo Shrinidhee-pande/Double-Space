@@ -12,7 +12,7 @@ public class Spawn : MonoBehaviour
 
     private void Spawns()
     {
-        if(GameManager.CurrentState == GameState.Play)
+        if(GameManager.Instance.CurrentState == GameState.Play)
         {
             int number = Random.Range(1, 7);
             for (int i = 0; i < number; i++)
@@ -23,10 +23,5 @@ public class Spawn : MonoBehaviour
                 Instantiate(enemyPrefab, new Vector2(x, y), Quaternion.identity);
             }
         }
-    }
-
-    void Update()
-    {
-        
     }
 }
