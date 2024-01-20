@@ -52,7 +52,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(collision.gameObject);
-            GameManager.Instance.CurrentState = GameState.GameOver;
+            GameManager.CurrentState = GameState.GameOver;
         }
     }
     void FixedUpdate()

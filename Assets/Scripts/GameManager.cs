@@ -1,25 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
-    Start,Play, GameOver
+    Play, GameOver
 };
 public class GameManager : MonoBehaviour
 {
-    public GameState CurrentState { get; set; }
-    public static GameManager Instance;
+    public static GameState CurrentState { get; set; }
+    public Canvas canvas;
     void Start()
     {
-        CurrentState = GameState.Start;
-        if (Instance == null)
+        canvas.enabled = false;
+        CurrentState = GameState.Play;
+    }
+
+    void Update()
+    {
+        if (CurrentState == GameState.GameOver)
         {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
+            canvas.enabled = true;
         }
     }
 
+    public void Restart()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
