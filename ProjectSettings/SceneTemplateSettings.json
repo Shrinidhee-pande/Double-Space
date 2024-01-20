@@ -7,6 +7,7 @@
             "ignore": false,
             "defaultInstantiationMode": 0,
             "supportsModification": true
+
         },
         {
             "userAdded": false,
@@ -14,6 +15,7 @@
             "ignore": false,
             "defaultInstantiationMode": 0,
             "supportsModification": true
+
         },
         {
             "userAdded": false,
@@ -21,6 +23,7 @@
             "ignore": false,
             "defaultInstantiationMode": 0,
             "supportsModification": true
+
         },
         {
             "userAdded": false,
@@ -28,6 +31,7 @@
             "ignore": false,
             "defaultInstantiationMode": 0,
             "supportsModification": true
+
         },
         {
             "userAdded": false,
@@ -35,6 +39,7 @@
             "ignore": true,
             "defaultInstantiationMode": 1,
             "supportsModification": true
+
         },
         {
             "userAdded": false,
@@ -42,13 +47,16 @@
             "ignore": false,
             "defaultInstantiationMode": 0,
             "supportsModification": true
+
         },
         {
             "userAdded": false,
             "type": "UnityEngine.GameObject",
+
             "ignore": false,
             "defaultInstantiationMode": 0,
             "supportsModification": true
+
         },
         {
             "userAdded": false,
@@ -56,6 +64,7 @@
             "ignore": false,
             "defaultInstantiationMode": 0,
             "supportsModification": false
+
         },
         {
             "userAdded": false,
@@ -63,6 +72,7 @@
             "ignore": false,
             "defaultInstantiationMode": 0,
             "supportsModification": true
+
         },
         {
             "userAdded": false,
@@ -70,6 +80,7 @@
             "ignore": false,
             "defaultInstantiationMode": 0,
             "supportsModification": true
+
         },
         {
             "userAdded": false,
@@ -162,6 +173,7 @@
         "ignore": false,
         "defaultInstantiationMode": 1,
         "supportsModification": true
+
     },
     "newSceneOverride": 0
 }
