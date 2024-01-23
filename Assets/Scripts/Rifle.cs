@@ -1,13 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Rifle : Weapon
 {
     public Transform barrel;
-    public float holdDuration=0;
+    public float holdDuration = 0;
     public float speed;
     private WaitForSeconds timeToWait;
     Rifle()
@@ -23,18 +20,12 @@ public class Rifle : Weapon
     }
     IEnumerator ContinuousFire()
     {
-        if (rapidFire)
+        do
         {
-            while (true)
-            {
-                FireBullets();
-                yield return timeToWait;
-            }
-        }
-        else
-        {
-            yield return null;
-        }
+            FireBullets();
+            yield return timeToWait;
+        }while (rapidFire);
+        yield return null;
     }
     private void FireBullets()
     {
@@ -42,10 +33,11 @@ public class Rifle : Weapon
         Bullet b = bullet.AddComponent<Bullet>();
         b.direction = new Vector2(barrel.position.x - transform.position.x, barrel.position.y - transform.position.y).normalized * speed;
         b.timeToLive = range / speed;
+        Debug.Log("Direction : " + b.direction.ToString()+ ",  ttl : "+ b.timeToLive);
     }
 
     public override void Damage()
     {
-        FireBullets();
+        StartCoroutine(nameof(ContinuousFire));
     }
 }

@@ -16,6 +16,7 @@ public class Bullet : MonoBehaviour
         direction = velocity;
         timeToLive = time;
     }
+
     private void Start()
     {
         GetComponent<Rigidbody2D>().velocity = direction;

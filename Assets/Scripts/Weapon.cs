@@ -18,5 +18,6 @@ public abstract class Weapon : MonoBehaviour
         range = 5f;
         bulletPrefab = null;
     }
+
     public abstract void Damage();
 }
