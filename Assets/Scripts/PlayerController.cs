@@ -11,8 +11,6 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D spaceshipRigidbody;
     private Projekt inputs;
-    private InputAction movement;
-    //private InputAction aim;
     private Weapon weapon;
 
 
@@ -24,23 +22,21 @@ public class PlayerController : MonoBehaviour
     }
     private void OnEnable()
     {
-        movement = inputs.Player.Move;
-        //aim = inputs.Player.Look;
         inputs.Player.Fire.performed += context =>
         {
             if (context.interaction is HoldInteraction)
             {
-                weapon.rapidFire = true;
+                weapon.RapidFire = true;
             }
             else
             {
-                weapon.rapidFire = false;
+                weapon.RapidFire = false;
             }
             StartFire();
         };
         inputs.Player.Fire.canceled += context => { StopFire(); };
-        movement.performed += Move;
-        movement.canceled += Move;
+        inputs.Player.Move.performed += Move;
+        inputs.Player.Move.canceled += Move;
         inputs.Enable();
     }
 
@@ -51,7 +47,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Vector2 lookDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Vector2 lookDirection = (mousePos - transform.position).normalized;
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
         weapon.gameObject.transform.eulerAngles = new Vector3(0, 0, angle);
     }
@@ -66,13 +63,11 @@ public class PlayerController : MonoBehaviour
 
     private void StopFire()
     {
-        weapon.rapidFire = false;
+        weapon.RapidFire = false;
     }
 
     private void StartFire()
     {
         weapon.Damage();
     }
-
-    
 }
