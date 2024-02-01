@@ -203,7 +203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9ced828f4b53504eab44f5cbdedac8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 1}
+  damage: 10
+  velocity: {x: 0, y: 0}
   timeToLive: 3
   excludeMask:
     serializedVersion: 2

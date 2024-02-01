@@ -24,9 +24,4 @@ public class Spawn : MonoBehaviour
             }
         }
     }
-
-    void Update()
-    {
-        
-    }
 }

@@ -17,7 +17,11 @@ public class Bullet : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(collision.gameObject);
+        if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable damageAble))
+        {
+            Debug.Log("Called");
+            damageAble.TakeDamage(damage);
+        }
         Destroy(gameObject);
     }
 }

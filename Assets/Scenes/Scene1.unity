@@ -474,12 +474,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07ef0e73a1daf584ca3d64173b1f3e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
   fireRate: 5
   range: 100
+  capacity: 30
   bulletPrefab: {fileID: 7463205764165555634, guid: 77c5f78162e9bca4fbd0de692e214ebb, type: 3}
   barrel: {fileID: 1290217399}
-  holdDuration: 0
   speed: 25
 --- !u!1 &1290217398
 GameObject:
@@ -889,6 +888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  dodgeDistance: 2
 --- !u!114 &1640144176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -988,6 +988,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e6602389b98c9845b826c6c4e21b284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthPoints: 100
+  level: 1
 --- !u!1 &1770523884
 GameObject:
   m_ObjectHideFlags: 0
@@ -1555,7 +1557,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2100276141}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edf0e9daed5b8224cbd7fa20e850aca7, type: 3}
   m_Name: 

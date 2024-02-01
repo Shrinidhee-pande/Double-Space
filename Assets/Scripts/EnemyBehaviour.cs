@@ -9,8 +9,10 @@ public class EnemyBehaviour : MonoBehaviour
     public EnemyState State { get; set; }
     public Vector2 Bounds;
     public Vector2 posBound;
+    public float detectionRadius;
     public LayerMask layerMask;
     public float followSpeed;
+    public LayerMask excludeMask;
 
 
     private Transform player;
@@ -24,6 +26,7 @@ public class EnemyBehaviour : MonoBehaviour
         enemyRigidbody = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         nextPoint = GetNextPoint();
+        enemyRigidbody.excludeLayers = excludeMask;
     }
 
     private Vector2 GetNextPoint()
@@ -49,15 +52,14 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable player))
         {
-            Destroy(collision.gameObject);
+            player.TakeDamage(50);
             GameManager.CurrentState = GameState.GameOver;
         }
     }
     void FixedUpdate()
     {
-        Debug.Log(State);
         if (State == EnemyState.Wander)
         {
             if (Vector2.Distance(transform.position, nextPoint) <= 5f)
@@ -66,7 +68,7 @@ public class EnemyBehaviour : MonoBehaviour
             }
             Vector2 nextpointDirection = nextPoint - (Vector2)transform.position;
             enemyRigidbody.velocity = nextpointDirection.normalized;
-            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 10f, layerMask);
+            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectionRadius, layerMask);
             if (hits != null)
             {
                 foreach (Collider2D hit in hits)

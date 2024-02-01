@@ -8,7 +8,7 @@ using UnityEngine.InputSystem.Interactions;
 public class PlayerController : MonoBehaviour
 {
     public float speed;
-
+    public float dodgeDistance;
     private Rigidbody2D spaceshipRigidbody;
     private Projekt inputs;
     private Weapon weapon;
@@ -34,10 +34,23 @@ public class PlayerController : MonoBehaviour
             }
             StartFire();
         };
-        inputs.Player.Fire.canceled += context => { StopFire(); };
+        inputs.Player.Fire.canceled += context =>
+        {
+            StopFire();
+        };
         inputs.Player.Move.performed += Move;
         inputs.Player.Move.canceled += Move;
+        inputs.Player.Dodge.performed += context =>
+        {
+            Dodge();
+        };
         inputs.Enable();
+    }
+
+    private void Dodge()
+    {
+        Vector2 dir = spaceshipRigidbody.velocity.normalized;
+        spaceshipRigidbody.MovePosition((Vector2)transform.position + dir * dodgeDistance);
     }
 
     private void OnDisable()
