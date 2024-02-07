@@ -49,16 +49,8 @@ public class EnemyBehaviour : MonoBehaviour
         }
         return new Vector2(x, y);
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable player))
-        {
-            player.TakeDamage(50);
-            GameManager.CurrentState = GameState.GameOver;
-        }
-    }
-    void FixedUpdate()
+ 
+    private void FixedUpdate()
     {
         if (State == EnemyState.Wander)
         {

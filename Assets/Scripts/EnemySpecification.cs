@@ -17,4 +17,13 @@ public class EnemySpecification : MonoBehaviour, IDamageable
         }
     }
 
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable player))
+        {
+            player.TakeDamage(50);
+        }
+    }
+
 }

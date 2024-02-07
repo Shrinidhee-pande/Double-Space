@@ -32,4 +32,9 @@ public class PlayerSpecification : MonoBehaviour, IDamageable
             GameManager.CurrentState = GameState.GameOver;
         }
     }
+
+    private void OnDestroy()
+    {
+       GameManager.CurrentState = GameState.GameOver;
+    }
 }

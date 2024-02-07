@@ -63,7 +63,17 @@ public class PlayerController : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         Vector2 lookDirection = (mousePos - transform.position).normalized;
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+        /*float thisAngle = transform.eulerAngles.z;
+        if(angle >= thisAngle + 60)
+        {
+            angle = thisAngle + 60;
+        }
+        else if (angle <= thisAngle - 60)
+        {
+            angle = thisAngle - 60;
+        }*/
         weapon.gameObject.transform.eulerAngles = new Vector3(0, 0, angle);
+
     }
 
     private void Move(InputAction.CallbackContext context)
