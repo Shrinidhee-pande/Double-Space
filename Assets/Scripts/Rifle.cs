@@ -3,33 +3,53 @@ using UnityEngine;
 
 public class Rifle : Weapon
 {
-    public Transform barrel;
-    public float speed;
+    public Transform[] barrels; 
+    public Transform[] origins; 
+    public float bulletSpeedMultiplier;
 
     private WaitForSeconds timeToWait;
-
+    private Vector2[] bulletDirections;
     void Start()
     {
         timeToWait = new WaitForSeconds(1 / fireRate);
+        bulletDirections = new Vector2[barrels.Length];
+        for (int i = 0; i < barrels.Length; i++)
+        {
+            bulletDirections[i] = (barrels[i].position - origins[i].position).normalized;
+        }
     }
     IEnumerator ContinuousFire()
     {
-        do
+        while (HoldFire)
         {
-            FireBullets();
+            Fire();
             yield return timeToWait; 
-        }while (RapidFire);
+        }
         yield return null;
     }
-    private void FireBullets()
+    private void Fire()
     {
-        GameObject bullet = Instantiate(bulletPrefab, barrel.position, transform.rotation);
-        Bullet b = bullet.GetComponent<Bullet>();
-        b.velocity = (barrel.position - transform.position).normalized * speed;
-        b.timeToLive = range / speed;
+        for (int i = 0; i < barrels.Length; i++)
+        {
+            bulletDirections[i] = (barrels[i].position - origins[i].position).normalized;
+        }
+        for (int i = 0; i < barrels.Length; i++)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, barrels[i].position, transform.rotation);
+            Bullet b = bullet.GetComponent<Bullet>();
+            b.velocity = bulletDirections[i] * bulletSpeedMultiplier;
+            b.timeToLive = range / bulletSpeedMultiplier;
+        }
     }
     public override void Damage()
     {
-        StartCoroutine(nameof(ContinuousFire));
+        if (HoldFire)
+        {
+            StartCoroutine(nameof(ContinuousFire));
+        }
+        else
+        {
+            Fire();
+        }
     }
 }

@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
     public float dodgeDistance;
+
     private Rigidbody2D spaceshipRigidbody;
     private Projekt inputs;
     private Weapon weapon;
@@ -26,11 +27,11 @@ public class PlayerController : MonoBehaviour
         {
             if (context.interaction is HoldInteraction)
             {
-                weapon.RapidFire = true;
+                weapon.HoldFire = true;
             }
             else
             {
-                weapon.RapidFire = false;
+                weapon.HoldFire = false;
             }
             StartFire();
         };
@@ -81,12 +82,12 @@ public class PlayerController : MonoBehaviour
         Vector2 moveDirection = context.ReadValue<Vector2>();
         float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
         spaceshipRigidbody.velocity = moveDirection * speed;
-        transform.eulerAngles = new Vector3(0, 0, angle - 90);
+        transform.eulerAngles = new Vector3(0, 0, angle);
     }
 
     private void StopFire()
     {
-        weapon.RapidFire = false;
+        weapon.HoldFire = false;
     }
 
     private void StartFire()

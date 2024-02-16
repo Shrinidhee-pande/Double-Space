@@ -19,7 +19,6 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable damageAble))
         {
-            Debug.Log("Called");
             damageAble.TakeDamage(damage);
         }
         Destroy(gameObject);
