@@ -16,6 +16,7 @@ public class PlayerSpecification : MonoBehaviour, IDamageable
 
     [SerializeField] private float healthPoints;
     [SerializeField] private int level;
+    [SerializeField] private float collisionDamage;
 
 
     public void TakeDamage(float damage)
@@ -33,6 +34,13 @@ public class PlayerSpecification : MonoBehaviour, IDamageable
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.TryGetComponent<IDamageable>(out IDamageable other))
+        {
+            other.TakeDamage(collisionDamage);
+        }
+    }
     private void OnDestroy()
     {
        GameManager.CurrentState = GameState.GameOver;

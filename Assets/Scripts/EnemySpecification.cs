@@ -1,8 +1,10 @@
 using UnityEngine;
 
+
 public class EnemySpecification : MonoBehaviour, IDamageable
 {
     public float healthPoints;
+    public float collisionDamage;
     
     public void TakeDamage(float damage)
     {
@@ -22,8 +24,12 @@ public class EnemySpecification : MonoBehaviour, IDamageable
     {
         if (collision.gameObject.TryGetComponent<IDamageable>(out IDamageable player))
         {
-            player.TakeDamage(50);
+            player.TakeDamage(collisionDamage);
         }
     }
 
+    private void OnDestroy()
+    {
+        SpawnManagement.enemiesToSpawn--;
+    }
 }

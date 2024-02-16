@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 222571201898089491}
   - component: {fileID: 5468136219849262906}
   - component: {fileID: 9211927426362650467}
+  - component: {fileID: 219370993426397768}
   - component: {fileID: 1003655466043296772}
-  - component: {fileID: 7242637882757232123}
   - component: {fileID: 2544950503450488470}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: EnemyShort
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,12 +78,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 2118680837, guid: fb4ed50953024ee4b9c9808d6438b8a7, type: 3}
-  m_Color: {r: 0.15641688, g: 0.8962264, b: 0.39231822, a: 1}
+  m_Sprite: {fileID: -681079136, guid: fb4ed50953024ee4b9c9808d6438b8a7, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.8828125, y: 1}
+  m_Size: {x: 2.625, y: 2.625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -101,9 +101,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -111,7 +111,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -152,15 +152,27 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.25, y: 2.3125}
-    newSize: {x: 0.8828125, y: 1}
+    oldSize: {x: 2.625, y: 2.625}
+    newSize: {x: 2.625, y: 2.625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.25, y: 2.3125}
+  m_Size: {x: 2.625, y: 2.625}
   m_EdgeRadius: 0
+--- !u!114 &219370993426397768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9019662757083911915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46d4b3aba49c4e40bf1610cbeaaed2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1003655466043296772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,28 +185,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a0bad2ddeab24479323965dbe6e259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bounds: {x: 18, y: 12}
-  posBound: {x: 22, y: 15}
-  detectionRadius: 10
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  followSpeed: 4
-  excludeMask:
-    serializedVersion: 2
-    m_Bits: 128
---- !u!114 &7242637882757232123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9019662757083911915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3460d413a1e2e3246b0a5ed7309c9874, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  useMovement: 1
+  useDamage: 0
+  player: {fileID: 0}
+  speed: 5
+  sprintDistance: 1
 --- !u!114 &2544950503450488470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,4 +202,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70e9acc9aa8b3ec4dbf7f3d3ae6c8f1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 20
+  healthPoints: 100
+  collisionDamage: 25

@@ -8,7 +8,8 @@ public abstract class Weapon : MonoBehaviour
     public float range;
     public float capacity;
     public GameObject bulletPrefab;
-    public bool RapidFire { get; set; }
+    public bool IsActive { get; set; }
+    public bool HoldFire { get; set; }
 
     public abstract void Damage();
 }
