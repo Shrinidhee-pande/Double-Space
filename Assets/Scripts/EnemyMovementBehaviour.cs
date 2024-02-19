@@ -6,6 +6,7 @@ public abstract class EnemyMovementBehaviour : MonoBehaviour
     public float speed;
 
     protected Rigidbody2D enemyRigidbody2D;
+    protected EnemyBrain brain;
 
     public abstract void Move();
     public abstract void Evade();
