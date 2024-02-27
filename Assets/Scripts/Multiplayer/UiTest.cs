@@ -2,18 +2,16 @@ using Unity.Netcode;
 
 public class UiTest : NetworkBehaviour
 {
-    public NetworkManager man;
-
     public void StartGameHost()
     {
-        man.StartHost();
+        NetworkManager.Singleton.StartHost();
     }
     public void StartGameClient()
     {
-        man.StartClient();
+        NetworkManager.Singleton.StartClient();
     }
     public void StartGameServer()
     {
-        man.StartServer();
+        NetworkManager.Singleton.StartServer();
     }
 }
