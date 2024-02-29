@@ -1,43 +1,37 @@
-using Cinemachine;
 using UnityEngine;
-
-public enum EnemyState { OutOfRange, InRange, TooClose };
 
 public class EnemyBrain : MonoBehaviour 
 {
-    public Transform player;
-    public EnemyState state;
+    EnemyBehaviour[] behaviours;
 
-    [SerializeField] private float minRange;
-    [SerializeField] private float maxRange;
+    public delegate void EnemyMovementDelegate();
+    public EnemyMovementDelegate Move;
 
-    private EnemyDamageBehaviour damageBehaviour;
-    private EnemyMovementBehaviour movementBehaviour;
+    public delegate void EnemyDamageDelegate();
+    public EnemyDamageDelegate Damage;
 
     void Start()
     {
-        damageBehaviour = GetComponent<EnemyDamageBehaviour>();
-        movementBehaviour = GetComponent<EnemyMovementBehaviour>();
-        player = FindObjectOfType<PlayerSpecification>().transform;
+        behaviours = GetComponents<EnemyBehaviour>();
+        for (int i = 0; i < behaviours.Length; i++)
+        {
+            behaviours[i].player = FindObjectOfType<PlayerSpecification>().transform;
+            if (behaviours[i].useMovement)
+            {
+                Move = behaviours[i].MovementBehavior;
+            }
+            if (behaviours[i].useDamage)
+            {
+                Damage = behaviours[i].DamageBehaviour;
+            }
+        }
     }
     private void Update()
     {
         if (GameManager.CurrentState == GameState.Play)
         {
-            float distance = Vector2.Distance(player.position, transform.position);
-            if (distance > maxRange)
-            {
-                state = EnemyState.OutOfRange;
-            }
-            else if (distance > minRange)
-            {
-                state = EnemyState.InRange;
-            }
-            else
-            {
-                state = EnemyState.TooClose;
-            }
-            movementBehaviour.Move();
+            Move?.Invoke();
+            Damage?.Invoke();
         }
     }
 }

@@ -7,7 +7,8 @@ public class FollowBehaviour : EnemyBehaviour
     public float maxDistance;
     public float nextTime;
 
-    private EnemyState currently;
+    private enum State { OutOfRange, InRange, TooClose };
+    private State currently;
     private Weapon weapon;
     private float nextFireTime;
 
@@ -15,11 +16,11 @@ public class FollowBehaviour : EnemyBehaviour
     {
         enemyRigidbody = GetComponent<Rigidbody2D>();
         weapon = GetComponent<Weapon>();
-        //currently = .OutOfRange;
+        currently = State.OutOfRange;
     }
 
     public override void AlignToMovement()
-    {/*
+    {
         float angle;
         if (currently == State.OutOfRange)
         {
@@ -32,19 +33,19 @@ public class FollowBehaviour : EnemyBehaviour
             angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         }
         transform.eulerAngles = new Vector3(0, 0, angle);
-    */}
+    }
 
     public override void DamageBehaviour()
-    {/*
+    {
         if (currently != State.OutOfRange && nextFireTime < Time.time)
         {
             weapon.Damage();
             nextFireTime = Time.time + nextTime;
-        }*/
+        }
     }
 
     public override void MovementBehavior()
-    {/*
+    {
         float distance = Vector2.Distance(player.position, transform.position);
         Vector2 direction = player.position - transform.position;
 
@@ -63,6 +64,6 @@ public class FollowBehaviour : EnemyBehaviour
             currently = State.TooClose;
             enemyRigidbody.velocity = -1 * speed * direction.normalized;
         }
-        AlignToMovement();*/
+        AlignToMovement();
     }
 }
