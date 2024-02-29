@@ -1,3 +1,4 @@
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
@@ -5,7 +6,7 @@ using UnityEngine.InputSystem.Interactions;
 /// <summary>
 /// Class to handle Player Input and Movement
 /// </summary>
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
     public float speed;
     public float dodgeDistance;
