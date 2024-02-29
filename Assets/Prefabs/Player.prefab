@@ -101,8 +101,8 @@ GameObject:
   - component: {fileID: 810269697500273947}
   - component: {fileID: 5039971846450513193}
   - component: {fileID: 5951434340112627059}
-  - component: {fileID: 5424793060407897363}
-  - component: {fileID: 6666382708076151274}
+  - component: {fileID: 3487601258342884521}
+  - component: {fileID: 7493049442310805110}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -119,7 +119,7 @@ Transform:
   m_GameObject: {fileID: 8992574541255147122}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.14, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -235,7 +235,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1000
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 0
+  GlobalObjectIdHash: 3582834797
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -341,7 +341,7 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &5424793060407897363
+--- !u!114 &3487601258342884521
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -350,7 +350,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8992574541255147122}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Script: {fileID: 11500000, guid: db891e8465cf2574f83cbebefcba7b83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SyncPositionX: 1
@@ -371,7 +371,7 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
---- !u!114 &6666382708076151274
+--- !u!114 &7493049442310805110
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -428,7 +428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07ef0e73a1daf584ca3d64173b1f3e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 5
+  fireRate: 7
   range: 20
   capacity: 30
   bulletPrefab: {fileID: 679188280138425033, guid: b9aadeafa9882b94c90fe9a7d9f56626, type: 3}

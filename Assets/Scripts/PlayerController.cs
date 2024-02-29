@@ -1,17 +1,18 @@
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
 /// <summary>
-/// Class to handle PlayerInput and Movement
+/// Class to handle Player Input and Movement
 /// </summary>
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
     public float speed;
     public float dodgeDistance;
 
     private Rigidbody2D spaceshipRigidbody;
-    private Projekt inputs;
+    private PlayerControls inputs;
     private Weapon weapon;
 
 
@@ -19,10 +20,19 @@ public class PlayerController : MonoBehaviour
     {
         spaceshipRigidbody = GetComponent<Rigidbody2D>();
         weapon = GetComponentInChildren<Weapon>();
-        inputs = new Projekt();
+        inputs = new PlayerControls();
     }
+
     private void OnEnable()
     {
+        //Move
+        inputs.Player.Move.performed += Move;
+        inputs.Player.Move.canceled += Move;
+
+        //Aim
+        inputs.Player.Aim.performed += Aim;
+
+        //Fire
         inputs.Player.Fire.performed += context =>
         {
             if (context.interaction is HoldInteraction)
@@ -39,13 +49,32 @@ public class PlayerController : MonoBehaviour
         {
             StopFire();
         };
-        inputs.Player.Move.performed += Move;
-        inputs.Player.Move.canceled += Move;
+
+        //Dodge
         inputs.Player.Dodge.performed += context =>
         {
             Dodge();
         };
+
         inputs.Enable();
+    }
+    private void OnDisable()
+    {
+        inputs.Disable();
+    }
+
+    private void Move(InputAction.CallbackContext context)
+    {
+        Vector2 moveDirection = context.ReadValue<Vector2>();
+        spaceshipRigidbody.velocity = moveDirection * speed;
+    }
+
+    private void Aim(InputAction.CallbackContext context)
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>());
+        Vector2 lookDirection = (mousePosition - transform.position).normalized;
+        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+        transform.eulerAngles = new Vector3(0, 0, angle);
     }
 
     private void Dodge()
@@ -54,44 +83,16 @@ public class PlayerController : MonoBehaviour
         spaceshipRigidbody.MovePosition((Vector2)transform.position + dir * dodgeDistance);
     }
 
-    private void OnDisable()
+    private void StartFire()
     {
-        inputs.Disable();
-    }
-
-    private void Update()
-    {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        Vector2 lookDirection = (mousePos - transform.position).normalized;
-        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-        /*float thisAngle = transform.eulerAngles.z;
-        if(angle >= thisAngle + 60)
+        if (IsOwner)
         {
-            angle = thisAngle + 60;
+            weapon.Damage();
         }
-        else if (angle <= thisAngle - 60)
-        {
-            angle = thisAngle - 60;
-        }*/
-        weapon.gameObject.transform.eulerAngles = new Vector3(0, 0, angle);
-
-    }
-
-    private void Move(InputAction.CallbackContext context)
-    {
-        Vector2 moveDirection = context.ReadValue<Vector2>();
-        float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
-        spaceshipRigidbody.velocity = moveDirection * speed;
-        transform.eulerAngles = new Vector3(0, 0, angle);
     }
 
     private void StopFire()
     {
         weapon.HoldFire = false;
-    }
-
-    private void StartFire()
-    {
-        weapon.Damage();
     }
 }
