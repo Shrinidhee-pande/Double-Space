@@ -24,7 +24,6 @@ public class PlayerSpecification : MonoBehaviour, IDamageable
         healthPoints -= damage;
         OnSpecChange?.Invoke(new OnChangeEventArgs(healthPoints));
     }
-
     private void Update()
     {
         if (healthPoints <= 0)
@@ -39,6 +38,14 @@ public class PlayerSpecification : MonoBehaviour, IDamageable
         if(collision.gameObject.TryGetComponent<IDamageable>(out IDamageable other))
         {
             other.TakeDamage(collisionDamage);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Respawn"))
+        {
+            Debug.Log("Win");
         }
     }
     private void OnDestroy()

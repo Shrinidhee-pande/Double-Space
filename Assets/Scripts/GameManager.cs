@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using Cinemachine;
+using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public enum GameState
 {
@@ -11,7 +10,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameState CurrentState { get; set; }
     public Canvas canvas;
-    void Start()
+    void Awake()
     {
         canvas.enabled = false;
         CurrentState = GameState.Play;

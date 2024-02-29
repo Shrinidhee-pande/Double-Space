@@ -1,6 +1,6 @@
 using Unity.Netcode;
 
-public class UiTest : NetworkBehaviour
+public class MultiPLayerUI : NetworkBehaviour
 {
     public void StartGameHost()
     {
@@ -9,9 +9,5 @@ public class UiTest : NetworkBehaviour
     public void StartGameClient()
     {
         NetworkManager.Singleton.StartClient();
-    }
-    public void StartGameServer()
-    {
-        NetworkManager.Singleton.StartServer();
     }
 }
