@@ -20,6 +20,6 @@ public class EnemySpecification : MonoBehaviour, IDamageable
 
     private void OnDestroy()
     {
-        SpawnManagement.enemiesToSpawn--;
+        GameMode.Instance.enemiesKilled++;
     }
 }

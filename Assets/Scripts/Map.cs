@@ -1,13 +1,9 @@
-using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraHandler : MonoBehaviour
+public class Map : MonoBehaviour
 {
-    [SerializeField] private CinemachineVirtualCamera virtualCamera;
-
-
     // Start is called before the first frame update
     void Start()
     {

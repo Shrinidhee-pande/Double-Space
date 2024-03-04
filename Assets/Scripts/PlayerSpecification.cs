@@ -6,9 +6,11 @@ public class PlayerSpecification : MonoBehaviour, IDamageable
     public class OnChangeEventArgs : EventArgs
     {
         public float HealthPoints { get; set; }
-        public OnChangeEventArgs(float hp)
+        public float ExpPoints { get; set; }
+        public OnChangeEventArgs(float hp, float expPoints)
         {
             HealthPoints = hp;
+            ExpPoints = expPoints;
         }
     }
     public delegate void PlayerSpecificationDelegate(OnChangeEventArgs e);
@@ -17,13 +19,15 @@ public class PlayerSpecification : MonoBehaviour, IDamageable
     [SerializeField] private float healthPoints;
     [SerializeField] private int level;
     [SerializeField] private float collisionDamage;
+    private float expPoints;
 
 
     public void TakeDamage(float damage)
     {
         healthPoints -= damage;
-        OnSpecChange?.Invoke(new OnChangeEventArgs(healthPoints));
+        OnSpecChange?.Invoke(new OnChangeEventArgs(healthPoints,expPoints));
     }
+
     private void Update()
     {
         if (healthPoints <= 0)
