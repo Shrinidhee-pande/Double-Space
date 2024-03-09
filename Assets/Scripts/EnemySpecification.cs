@@ -20,6 +20,12 @@ public class EnemySpecification : MonoBehaviour, IDamageable
 
     private void OnDestroy()
     {
+        AfterDeath();
+    }
+
+    private void AfterDeath()
+    {
         GameMode.Instance.enemiesKilled++;
+        //Spawn powerup, gems etc
     }
 }
