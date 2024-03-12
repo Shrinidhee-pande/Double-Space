@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Lobbies;
@@ -6,17 +8,11 @@ using UnityEngine;
 
 public class LobbyControl : MonoBehaviour
 {
-    public RectTransform createCanvas;
-    public RectTransform joinCanvas;
-
-
     private Lobby currentLobby;
-    
+    private float heartbeatCounter;
 
     private async void Start()
     {
-        createCanvas.gameObject.SetActive(false);
-        joinCanvas.gameObject.SetActive(false);
         await UnityServices.InitializeAsync();
         AuthenticationService.Instance.SignedIn += () =>
         {
@@ -26,14 +22,23 @@ public class LobbyControl : MonoBehaviour
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
         ListLobbies();
     }
-
-    public void CreateLobbyButton()
+    private async void Update()
     {
-        createCanvas.gameObject.SetActive(true); 
+        await HeartbeatHandler();
     }
-    public void JoinLobbyButton()
+
+    private async Task HeartbeatHandler()
     {
-        joinCanvas.gameObject.SetActive(true);
+        if (currentLobby != null)
+        {
+            heartbeatCounter -= Time.deltaTime;
+
+            if (heartbeatCounter < 0f)
+            {
+                heartbeatCounter += 25f;
+                await LobbyService.Instance.SendHeartbeatPingAsync(currentLobby.Id);
+            }
+        }
     }
 
     public async void CreateLobbyByName()
@@ -43,11 +48,21 @@ public class LobbyControl : MonoBehaviour
         bool privateLobby = lobbyCred.IsPrivate;
         try
         {
+            CreateLobbyOptions options = new CreateLobbyOptions
+            {
+                IsPrivate = privateLobby,
+                Player = new Player
+                {
+                    Data = new Dictionary<string, PlayerDataObject> {
+                        { "PlayerName", new PlayerDataObject(PlayerDataObject.VisibilityOptions.Member, "name")}
+                    }
+                }
+            };
 
-            Lobby lobby = await LobbyService.Instance.CreateLobbyAsync(name, 2, new CreateLobbyOptions { IsPrivate = privateLobby });
+            Lobby lobby = await LobbyService.Instance.CreateLobbyAsync(name, 2, options);
             Debug.Log("Lobby created: " + lobby.Id + " " + lobby.Name);
+            LobbyUi.Instance.CreatePlayerText(lobby);
             currentLobby = lobby;
-            createCanvas.gameObject.SetActive(false);
         }
         catch (LobbyServiceException e)
         {
@@ -60,9 +75,9 @@ public class LobbyControl : MonoBehaviour
         try
         {
             QueryResponse response = await Lobbies.Instance.QueryLobbiesAsync();
-            foreach(Lobby lobby in response.Results)
+            foreach (Lobby lobby in response.Results)
             {
-                Debug.Log(lobby.Name);
+                LobbyUi.Instance.CreateLobbyText(lobby);
             }
         }
         catch (LobbyServiceException e)
@@ -70,4 +85,22 @@ public class LobbyControl : MonoBehaviour
             Debug.Log(e);
         }
     }
+
+    public async void JoinLobbyUsingCode()
+    {
+        LobbyCredentials lobbyCred = GetComponent<LobbyCredentials>();
+        string code = lobbyCred.lobbyCode;
+
+        try
+        {
+            Lobby lobby = await LobbyService.Instance.JoinLobbyByCodeAsync(code);
+            Debug.Log("Lobby joined: " + lobby.Id + " " + lobby.Name);
+            LobbyUi.Instance.CreatePlayerText(lobby);
+        }
+        catch (LobbyServiceException e)
+        {
+            Debug.Log(e);
+        }
+    }
+
 }
