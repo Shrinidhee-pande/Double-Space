@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LobbyUi : MonoBehaviour
@@ -37,22 +39,51 @@ public class LobbyUi : MonoBehaviour
 
     public void CreateLobbyText(Lobby lobby)
     {
+        TextMeshProUGUI[] texts = content.GetComponentsInChildren<TextMeshProUGUI>();
+        if (texts.Length > 0)
+        {
+            foreach(TextMeshProUGUI text in texts)
+            {
+                Destroy(text.gameObject);
+            }
+        }
         GameObject t = Instantiate(lobbyTextPrefab, content);
         TextMeshProUGUI tText = t.GetComponentInChildren<TextMeshProUGUI>();
-        tText.text = lobby.Name + " : " + lobby.AvailableSlots + " : " + lobby.LobbyCode;
+        tText.text = lobby.Name + " : " + lobby.AvailableSlots + " SLOTS AVAILABLE";
         Debug.Log(lobby.Name);
     }
 
 
+    public void CreatePlayerText(List<LobbyPlayerJoined> players)
+    {
+        TextMeshProUGUI[] texts = playerContent.GetComponentsInChildren<TextMeshProUGUI>();
+        if (texts.Length > 0)
+        {
+            foreach (TextMeshProUGUI text in texts)
+            {
+                Destroy(text.gameObject);
+            }
+        }
+        foreach (LobbyPlayerJoined p in players)
+        {
+            GameObject t = Instantiate(lobbyTextPrefab, playerContent);
+            TextMeshProUGUI tText = t.GetComponentInChildren<TextMeshProUGUI>();
+            tText.text = p.Player.Data["PlayerName"].Value;
+        }
+    }
+
     public void CreatePlayerText(Lobby lobby)
     {
-        lobbyDetails.text = lobby.Name + "\tAvailable Slots: " + lobby.AvailableSlots + "\tCode: " + lobby.LobbyCode;
-        List<Player> players = lobby.Players;
-        foreach (Player p in players)
+        foreach (Player p in lobby.Players)
         {
             GameObject t = Instantiate(lobbyTextPrefab, playerContent);
             TextMeshProUGUI tText = t.GetComponentInChildren<TextMeshProUGUI>();
             tText.text = p.Data["PlayerName"].Value;
         }
+    }
+
+    public void UpdateLobbyText(Lobby lobby)
+    {
+        lobbyDetails.text = lobby.Name + "\tCode: " + lobby.LobbyCode;
     }
 }

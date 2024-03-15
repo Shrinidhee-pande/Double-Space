@@ -1,3 +1,4 @@
+using Cinemachine;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,12 +16,19 @@ public class PlayerController : NetworkBehaviour
     private PlayerControls inputs;
     private Weapon weapon;
 
-
-    void Awake()
+    private void Awake()
     {
         spaceshipRigidbody = GetComponent<Rigidbody2D>();
         weapon = GetComponentInChildren<Weapon>();
         inputs = new PlayerControls();
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+        CinemachineVirtualCamera cam = FindObjectOfType<CinemachineVirtualCamera>();
+        cam.Follow = transform;
+        cam.LookAt = transform;
     }
 
     private void OnEnable()

@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public abstract class Weapon : MonoBehaviour
+public abstract class Weapon : NetworkBehaviour
 {
     public float fireRate;
     public float range;
-    public float capacity;
+    public int maxCapacity;
     public GameObject bulletPrefab;
     public bool IsActive { get; set; }
     public bool HoldFire { get; set; }

@@ -27,6 +27,11 @@ public class UiHandler : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+    
+    public void StartLobby()
+    {
+        SceneManager.LoadScene(2);
+    }
 
     public void QuitGame()
     {

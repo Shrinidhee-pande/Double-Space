@@ -1,55 +1,61 @@
-using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 
 public class Rifle : Weapon
 {
-    public Transform[] barrels; 
-    public Transform[] origins; 
+    public Transform barrel;
+    public Transform origin;
     public float bulletSpeedMultiplier;
+ //   public float coolDown;
 
-    private WaitForSeconds timeToWait;
-    private Vector2[] bulletDirections;
+    private float timeToWait;
+ //   private int capacity = 0;
+    private float nextBulletTime = 0;
+/*    private float coooldownTime = 0;
+    private bool overheated = false;*/
+    private Vector2 bulletDirection;
+
     void Start()
     {
-        timeToWait = new WaitForSeconds(1 / fireRate);
-        bulletDirections = new Vector2[barrels.Length];
-        for (int i = 0; i < barrels.Length; i++)
-        {
-            bulletDirections[i] = (barrels[i].position - origins[i].position).normalized;
-        }
+        timeToWait = (1 / fireRate);
     }
-    IEnumerator ContinuousFire()
+
+    [ServerRpc]
+    private void FireServerRPC()
     {
-        while (HoldFire)
-        {
-            Fire();
-            yield return timeToWait; 
-        }
-        yield return null;
+        bulletDirection = (origin.position-barrel.position).normalized;
+
+        GameObject bullet = Instantiate(bulletPrefab, barrel.position, Quaternion.identity);
+
+        Bullet b = bullet.GetComponent<Bullet>();
+        b.velocity = bulletDirection * bulletSpeedMultiplier;
+        b.timeToLive = range / bulletSpeedMultiplier;
+
+        bullet.GetComponent<NetworkObject>().Spawn();
     }
-    private void Fire()
-    {
-        for (int i = 0; i < barrels.Length; i++)
-        {
-            bulletDirections[i] = (barrels[i].position - origins[i].position).normalized;
-        }
-        for (int i = 0; i < barrels.Length; i++)
-        {
-            GameObject bullet = Instantiate(bulletPrefab, barrels[i].position, transform.rotation);
-            Bullet b = bullet.GetComponent<Bullet>();
-            b.velocity = bulletDirections[i] * bulletSpeedMultiplier;
-            b.timeToLive = range / bulletSpeedMultiplier;
-        }
-    }
+
     public override void Damage()
     {
-        if (HoldFire)
+        /*
+        if (!overheated)
+        {*/
+        nextBulletTime -= Time.deltaTime;
+        if (nextBulletTime < 0f)
         {
-            StartCoroutine(nameof(ContinuousFire));
+            if (HoldFire)
+            {
+                FireServerRPC();
+                //capacity++;
+                nextBulletTime = Time.deltaTime + timeToWait;
+            }
         }
-        else
-        {
-            Fire();
-        }
+        /*            
+            if (capacity >= maxCapacity)
+            {
+                capacity = 0;
+                overheated = true;
+                nextBulletTime = Time.deltaTime + coolDown;
+            }
+        }*/
     }
 }

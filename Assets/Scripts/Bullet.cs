@@ -1,17 +1,16 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : NetworkBehaviour
 {
     public float damage;
     public Vector2 velocity;
     public float timeToLive;
-    public LayerMask excludeMask;
     private Rigidbody2D bulletRigidbody;
 
-    private void Start()
+    public override void OnNetworkSpawn()
     {
         bulletRigidbody = GetComponent<Rigidbody2D>();
-        bulletRigidbody.excludeLayers = excludeMask;
         bulletRigidbody.velocity = velocity;
         Destroy(gameObject, timeToLive);
     }
