@@ -812,7 +812,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 532430015}
+      - m_Target: {fileID: 867834813}
         m_TargetAssemblyTypeName: LobbyControl, Assembly-CSharp
         m_MethodName: CreateLobbyByName
         m_Mode: 1
@@ -824,7 +824,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 532430017}
+      - m_Target: {fileID: 867834812}
         m_TargetAssemblyTypeName: LobbyUi, Assembly-CSharp
         m_MethodName: EnableCanvas
         m_Mode: 3
@@ -1091,7 +1091,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 532430015}
+      - m_Target: {fileID: 867834813}
         m_TargetAssemblyTypeName: LobbyControl, Assembly-CSharp
         m_MethodName: JoinLobbyUsingCode
         m_Mode: 1
@@ -1103,7 +1103,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 532430017}
+      - m_Target: {fileID: 867834812}
         m_TargetAssemblyTypeName: LobbyUi, Assembly-CSharp
         m_MethodName: EnableCanvas
         m_Mode: 3
@@ -1153,101 +1153,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 526494434}
   m_CullTransparentMesh: 1
---- !u!1 &532430013
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 532430016}
-  - component: {fileID: 532430015}
-  - component: {fileID: 532430014}
-  - component: {fileID: 532430017}
-  - component: {fileID: 532430018}
-  m_Layer: 0
-  m_Name: Lobby
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &532430014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 532430013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd0af78b068d50348a03f3946c25eec9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lobbyName: MyLobby
-  lobbyCode: 
-  IsPrivate: 0
---- !u!114 &532430015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 532430013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 129183c25e42fa14497eade58c7dae57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &532430016
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 532430013}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &532430017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 532430013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43207f19c44c55c46a5664ba8659bbf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvases:
-  - {fileID: 849972334}
-  - {fileID: 2011430510}
-  - {fileID: 2004588644}
-  - {fileID: 1641283306}
-  lobbyDetails: {fileID: 1309225342}
-  lobbyTextPrefab: {fileID: 3207288872137541051, guid: 0aebd5c48d7da684d8eddee5c9afd8fc, type: 3}
-  content: {fileID: 1877440260}
-  playerContent: {fileID: 1404741957}
---- !u!114 &532430018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 532430013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d15daa391c8b9e49af54dbc93cc8279, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &542764938
 GameObject:
   m_ObjectHideFlags: 0
@@ -2264,7 +2169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &849972331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2439,7 +2344,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 532430014}
+      - m_Target: {fileID: 867834811}
         m_TargetAssemblyTypeName: LobbyCredentials, Assembly-CSharp
         m_MethodName: SetLobbyPrivacy
         m_Mode: 0
@@ -2553,7 +2458,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 532430018}
+      - m_Target: {fileID: 867834810}
         m_TargetAssemblyTypeName: PlayerCredentials, Assembly-CSharp
         m_MethodName: SetPlayerName
         m_Mode: 0
@@ -2648,6 +2553,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 867834806}
+  - component: {fileID: 867834809}
+  - component: {fileID: 867834808}
+  - component: {fileID: 867834807}
+  - component: {fileID: 867834813}
+  - component: {fileID: 867834812}
+  - component: {fileID: 867834811}
+  - component: {fileID: 867834810}
+  - component: {fileID: 867834814}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2670,6 +2583,156 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &867834807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867834805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6960e84d07fb87f47956e7a81d71c4e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ProtocolType: 0
+  m_UseWebSockets: 1
+  m_UseEncryption: 0
+  m_MaxPacketQueueSize: 128
+  m_MaxPayloadSize: 6144
+  m_HeartbeatTimeoutMS: 500
+  m_ConnectTimeoutMS: 1000
+  m_MaxConnectAttempts: 60
+  m_DisconnectTimeoutMS: 30000
+  ConnectionData:
+    Address: 127.0.0.1
+    Port: 7777
+    ServerListenAddress: 127.0.0.1
+  DebugSimulator:
+    PacketDelayMS: 0
+    PacketJitterMS: 0
+    PacketDropRate: 0
+--- !u!114 &867834808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867834805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 593a2fe42fa9d37498c96f9a383b6521, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NetworkConfig:
+    ProtocolVersion: 0
+    NetworkTransport: {fileID: 867834807}
+    PlayerPrefab: {fileID: 4633950570813832824, guid: 3c561662217a4ce46b4b300b4d19949c, type: 3}
+    Prefabs:
+      NetworkPrefabsLists:
+      - {fileID: 11400000, guid: cc587173f80033140b872d8e2b2f2567, type: 2}
+    TickRate: 30
+    ClientConnectionBufferTimeout: 10
+    ConnectionApproval: 0
+    ConnectionData: 
+    EnableTimeResync: 0
+    TimeResyncInterval: 30
+    EnsureNetworkVariableLengthSafety: 0
+    EnableSceneManagement: 1
+    ForceSamePrefabs: 1
+    RecycleNetworkIds: 1
+    NetworkIdRecycleDelay: 120
+    RpcHashSize: 0
+    LoadSceneTimeOut: 120
+    SpawnTimeout: 1
+    EnableNetworkLogs: 1
+    OldPrefabList: []
+  RunInBackground: 1
+  LogLevel: 1
+--- !u!114 &867834809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867834805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a042c61b799caae4fa9c8e10a899a3dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &867834810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867834805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d15daa391c8b9e49af54dbc93cc8279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &867834811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867834805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd0af78b068d50348a03f3946c25eec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lobbyName: MyLobby
+  lobbyCode: 
+  IsPrivate: 0
+--- !u!114 &867834812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867834805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43207f19c44c55c46a5664ba8659bbf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvases:
+  - {fileID: 849972334}
+  - {fileID: 2011430510}
+  - {fileID: 2004588644}
+  - {fileID: 1641283306}
+  lobbyDetails: {fileID: 1309225342}
+  lobbyTextPrefab: {fileID: 3207288872137541051, guid: 0aebd5c48d7da684d8eddee5c9afd8fc, type: 3}
+  content: {fileID: 1877440260}
+  playerContent: {fileID: 1404741957}
+--- !u!114 &867834813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867834805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 129183c25e42fa14497eade58c7dae57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &867834814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867834805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1faafe943683bca41a014e0a576ab661, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &952194194
 GameObject:
   m_ObjectHideFlags: 0
@@ -2887,7 +2950,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 532430017}
+      - m_Target: {fileID: 867834812}
         m_TargetAssemblyTypeName: LobbyUi, Assembly-CSharp
         m_MethodName: EnableCanvas
         m_Mode: 3
@@ -3020,7 +3083,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 532430017}
+      - m_Target: {fileID: 867834812}
         m_TargetAssemblyTypeName: LobbyUi, Assembly-CSharp
         m_MethodName: EnableCanvas
         m_Mode: 3
@@ -3483,7 +3546,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 532430015}
+      - m_Target: {fileID: 867834813}
         m_TargetAssemblyTypeName: LobbyControl, Assembly-CSharp
         m_MethodName: ListLobbies
         m_Mode: 1
@@ -3915,7 +3978,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 532430017}
+      - m_Target: {fileID: 867834812}
         m_TargetAssemblyTypeName: LobbyUi, Assembly-CSharp
         m_MethodName: EnableCanvas
         m_Mode: 3
@@ -4097,7 +4160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1641283306
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4510,7 +4573,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 532430015}
+      - m_Target: {fileID: 867834813}
         m_TargetAssemblyTypeName: LobbyControl, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
@@ -5159,7 +5222,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 532430014}
+      - m_Target: {fileID: 867834811}
         m_TargetAssemblyTypeName: LobbyCredentials, Assembly-CSharp
         m_MethodName: SetLobbyName
         m_Mode: 0
@@ -5903,7 +5966,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 532430017}
+      - m_Target: {fileID: 867834812}
         m_TargetAssemblyTypeName: LobbyUi, Assembly-CSharp
         m_MethodName: EnableCanvas
         m_Mode: 3
@@ -6181,7 +6244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2004588644
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6778,7 +6841,7 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 532430014}
+      - m_Target: {fileID: 867834811}
         m_TargetAssemblyTypeName: LobbyCredentials, Assembly-CSharp
         m_MethodName: SetLobbyCode
         m_Mode: 0
@@ -6950,5 +7013,4 @@ SceneRoots:
   - {fileID: 1641283306}
   - {fileID: 1143411923}
   - {fileID: 867834806}
-  - {fileID: 532430016}
   - {fileID: 734071623}

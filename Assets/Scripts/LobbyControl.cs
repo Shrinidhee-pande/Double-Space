@@ -1,9 +1,11 @@
 using System.Collections.Generic;
+using Unity.Netcode;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LobbyControl : MonoBehaviour
 {
@@ -166,9 +168,24 @@ public class LobbyControl : MonoBehaviour
         }
     }*/
 
-    public void StartGame()
+    [ClientRpc]
+    public void StartGameClientRPC()
     {
-
+         SceneManager.LoadSceneAsync(3);
+        Debug.Log(joinedLobby.Id);
+        if (joinedLobby.HostId == AuthenticationService.Instance.PlayerId)
+        {
+            NetworkManager.Singleton.StartHost();
+        }
+        else
+        {
+            NetworkManager.Singleton.StartClient();
+        }
     }
 
+
+    public void StartGame()
+    {
+        StartGameClientRPC();
+    }
 }
