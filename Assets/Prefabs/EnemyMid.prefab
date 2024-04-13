@@ -77,6 +77,7 @@ GameObject:
   - component: {fileID: 6972769619771082849}
   - component: {fileID: 4656272558440389823}
   - component: {fileID: 4140956215818755938}
+  - component: {fileID: -4682630366124982002}
   - component: {fileID: 7680122304201448184}
   m_Layer: 7
   m_Name: EnemyMid
@@ -241,7 +242,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthPoints: 150
-  collisionDamage: 25
 --- !u!114 &4656272558440389823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +254,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b46d4b3aba49c4e40bf1610cbeaaed2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  state: 0
+  minRange: 0
+  maxRange: 0
 --- !u!114 &4140956215818755938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,6 +277,26 @@ MonoBehaviour:
   minDistance: 10
   maxDistance: 20
   nextTime: 1
+--- !u!114 &-4682630366124982002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4519780607752400924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 1979380990
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!114 &7680122304201448184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,14 +311,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireRate: 1
   range: 15
-  capacity: 30
+  maxCapacity: 0
   bulletPrefab: {fileID: 7463205764165555634, guid: 77c5f78162e9bca4fbd0de692e214ebb, type: 3}
-  barrels:
-  - {fileID: 4197917377133041047}
-  - {fileID: 1668042327818758589}
-  origins:
-  - {fileID: 4710816803936600077}
-  - {fileID: 8846127533704016324}
+  barrel: {fileID: 0}
+  origin: {fileID: 0}
   bulletSpeedMultiplier: 10
 --- !u!1 &8079866455318288038
 GameObject:

@@ -13,14 +13,14 @@ public class PlayerController : NetworkBehaviour
     public float dodgeDistance;
 
     private Rigidbody2D spaceshipRigidbody;
-    private PlayerControls inputs;
+    private MainInput inputs;
     private Weapon weapon;
 
     private void Awake()
     {
         spaceshipRigidbody = GetComponent<Rigidbody2D>();
         weapon = GetComponentInChildren<Weapon>();
-        inputs = new PlayerControls();
+        inputs = new MainInput();
     }
 
     public override void OnNetworkSpawn()
