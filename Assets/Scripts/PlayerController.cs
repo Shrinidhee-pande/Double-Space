@@ -11,28 +11,39 @@ public class PlayerController : NetworkBehaviour
 {
     public float speed;
     public float dodgeDistance;
+    public CinemachineVirtualCamera thisCamera;
+    public AudioListener listener;
 
     private Rigidbody2D spaceshipRigidbody;
     private MainInput inputs;
     private Weapon weapon;
+    private Camera cam;
 
     private void Awake()
     {
         spaceshipRigidbody = GetComponent<Rigidbody2D>();
         weapon = GetComponentInChildren<Weapon>();
         inputs = new MainInput();
+        cam = GetComponentInChildren<Camera>();
     }
 
     public override void OnNetworkSpawn()
     {
-        base.OnNetworkSpawn();
-        CinemachineVirtualCamera cam = FindObjectOfType<CinemachineVirtualCamera>();
-        cam.Follow = transform;
-        cam.LookAt = transform;
+        base.OnNetworkSpawn(); 
+        if (IsOwner)
+        {
+            thisCamera.Priority = 1;
+            listener.enabled = true;
+        }
+        else
+        {
+            thisCamera.Priority = 0;
+        }
     }
 
     private void OnEnable()
     {
+        if(!IsLocalPlayer) { return; }
         //Move
         inputs.Player.Move.performed += Move;
         inputs.Player.Move.canceled += Move;
@@ -79,7 +90,7 @@ public class PlayerController : NetworkBehaviour
 
     private void Aim(InputAction.CallbackContext context)
     {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>());
+        Vector3 mousePosition = cam.ScreenToWorldPoint(context.ReadValue<Vector2>());
         Vector2 lookDirection = (mousePosition - transform.position).normalized;
         float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
         transform.eulerAngles = new Vector3(0, 0, angle);

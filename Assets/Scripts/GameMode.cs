@@ -13,6 +13,7 @@ public class GameMode : MonoBehaviour
     public float timeToComplete;
     public float enemies;
     public float enemiesKilled;
+    public Mode mode;
     public bool ObjectiveMet { get; set; } = false;
     private void Start()
     {
@@ -28,7 +29,7 @@ public class GameMode : MonoBehaviour
         if (enemies == enemiesKilled)
         {
             ObjectiveMet = true;
-            GameManager.CurrentState = GameState.GameOver;
+            GameManager.Instance.currentState = GameState.GameOver;
         }
     }
 }

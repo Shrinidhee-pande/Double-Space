@@ -33,7 +33,7 @@ public class PlayerSpecification : MonoBehaviour, IDamageable
         if (healthPoints <= 0)
         {
             Destroy(gameObject);
-            GameManager.CurrentState = GameState.GameOver;
+            GameManager.Instance.currentState = GameState.GameOver;
         }
     }
 
@@ -54,6 +54,6 @@ public class PlayerSpecification : MonoBehaviour, IDamageable
     }
     private void OnDestroy()
     {
-       GameManager.CurrentState = GameState.GameOver;
+       GameManager.Instance.currentState = GameState.GameOver;
     }
 }

@@ -37,7 +37,7 @@ public class LobbyUi : MonoBehaviour
         canvases[index].gameObject.SetActive(true);
     }
 
-    public void CreateLobbyText(Lobby lobby)
+ /*   public void CreateLobbyText(Lobby lobby)
     {
         TextMeshProUGUI[] texts = content.GetComponentsInChildren<TextMeshProUGUI>();
         if (texts.Length > 0)
@@ -52,7 +52,7 @@ public class LobbyUi : MonoBehaviour
         tText.text = lobby.Name + " : " + lobby.AvailableSlots + " SLOTS AVAILABLE";
         Debug.Log(lobby.Name);
     }
-
+*/
 
     public void CreatePlayerText(List<LobbyPlayerJoined> players)
     {

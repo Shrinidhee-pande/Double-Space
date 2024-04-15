@@ -12,12 +12,12 @@ public class UiHandler : MonoBehaviour
 
     private void Update()
     {
-        if(GameManager.CurrentState == GameState.Play)
+        if(GameManager.Instance.currentState == GameState.Play)
         {
             panelList[0].gameObject.SetActive(true);
             panelList[1].gameObject.SetActive(false);
         }
-        else if(GameManager.CurrentState == GameState.GameOver)
+        else if(GameManager.Instance.currentState == GameState.GameOver)
         {
             panelList[0].gameObject.SetActive(false);
             panelList[1].gameObject.SetActive(true);

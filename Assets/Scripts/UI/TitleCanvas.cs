@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEditor;
 #endif
 
-public class TitleCanvas : MonoBehaviour
+public class TitleCanvas : CanvasScript
 {
     [SerializeField] private Button playButton;
     [SerializeField] private Button quitButton;
@@ -26,6 +26,6 @@ public class TitleCanvas : MonoBehaviour
 
     private void PlayGame()
     {
-        SceneManager.LoadScene(1);
+        ShowNextCanvas();
     }
 }

@@ -22,7 +22,7 @@ public class EnemyBrain : MonoBehaviour
     }
     private void Update()
     {
-        if (GameManager.CurrentState == GameState.Play)
+        if (GameManager.Instance.currentState == GameState.Play)
         {
             float distance = Vector2.Distance(player.position, transform.position);
             if (distance > maxRange)

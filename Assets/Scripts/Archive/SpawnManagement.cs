@@ -25,7 +25,7 @@ public class SpawnManagement : MonoBehaviour
         enemiesToSpawn = waveNumber * 2;
         for (int i = 0; i < enemiesToSpawn; i++)
         {
-            if (GameManager.CurrentState == GameState.Play)
+            if (GameManager.Instance.currentState == GameState.Play)
             {
                 float x = Random.Range(-bounds.x, bounds.x);
                 float y = Random.Range(-bounds.y, bounds.y);

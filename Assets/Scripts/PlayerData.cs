@@ -1,10 +1,23 @@
 using UnityEngine;
 
-public class PlayerCredentials : MonoBehaviour
+public class PlayerData : MonoBehaviour
 {
+    public static PlayerData Instance;
     private string playerName;
     private string playerId;
+    private Sprite shipName;
 
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     public void SetPlayerId(string id)
     {
         playerId = id;
@@ -13,6 +26,11 @@ public class PlayerCredentials : MonoBehaviour
     public void SetPlayerName(string namePlayer)
     { 
         playerName = namePlayer; 
+    }
+    
+    public void SetShip(Sprite name)
+    {
+        shipName = name;
     }
 
     public string GetPlayerName()
@@ -28,6 +46,11 @@ public class PlayerCredentials : MonoBehaviour
     public string GetPlayerId()
     { 
         return playerId; 
+    }
+    
+    public Sprite GetShip()
+    { 
+        return shipName; 
     }
 
 }
