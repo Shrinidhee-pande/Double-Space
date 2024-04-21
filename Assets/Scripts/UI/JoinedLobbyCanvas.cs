@@ -35,6 +35,8 @@ public class JoinedLobbyCanvas : CanvasScript
     {
         if (LobbyData.Instance.GetLobby() != null)
         {
+            Lobby lobby = LobbyData.Instance.GetLobby();
+            lobbyText.text = $"Lobby\n {lobby.Name} \t CODE: {lobby.LobbyCode}";
             HeartbeatHandler();
             LobbyUpdateHandler();
         }
@@ -44,7 +46,6 @@ public class JoinedLobbyCanvas : CanvasScript
     {
         if (!IsHost()) { ready.interactable = false; }
         GameMode.Instance.mode = gameMode;
-        SceneManager.LoadScene(1);
         string relayCode = await RelayControl.Instance.CreateRelay();
         UpdateLobbyOptions options = new UpdateLobbyOptions
         {

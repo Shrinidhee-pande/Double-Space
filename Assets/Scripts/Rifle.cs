@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -5,57 +6,44 @@ public class Rifle : Weapon
 {
     public Transform barrel;
     public Transform origin;
-    public float bulletSpeedMultiplier;
- //   public float coolDown;
 
-    private float timeToWait;
- //   private int capacity = 0;
-    private float nextBulletTime = 0;
-/*    private float coooldownTime = 0;
-    private bool overheated = false;*/
+    private WaitForSeconds timeToWait;
     private Vector2 bulletDirection;
 
     void Start()
     {
-        timeToWait = (1 / fireRate);
+        timeToWait = new WaitForSeconds(1 / fireRate);
     }
 
     [ServerRpc]
     private void FireServerRPC()
     {
-        bulletDirection = (origin.position-barrel.position).normalized;
+        bulletDirection = (barrel.position - origin.position).normalized;
 
         GameObject bullet = Instantiate(bulletPrefab, barrel.position, Quaternion.identity);
 
         Bullet b = bullet.GetComponent<Bullet>();
-        b.velocity = bulletDirection * bulletSpeedMultiplier;
-        b.timeToLive = range / bulletSpeedMultiplier;
+        b.velocity = bulletDirection;
+        b.gunRange = range;
 
         bullet.GetComponent<NetworkObject>().Spawn();
     }
 
-    public override void Damage()
+    public override void Fire()
     {
-        /*
-        if (!overheated)
-        {*/
-        nextBulletTime -= Time.deltaTime;
-        if (nextBulletTime < 0f)
+        StartCoroutine(FireCont());
+    }
+
+    private IEnumerator FireCont()
+    {if(!IsOwner)
         {
-            if (HoldFire)
-            {
-                FireServerRPC();
-                //capacity++;
-                nextBulletTime = Time.deltaTime + timeToWait;
-            }
+            yield break;
         }
-        /*            
-            if (capacity >= maxCapacity)
-            {
-                capacity = 0;
-                overheated = true;
-                nextBulletTime = Time.deltaTime + coolDown;
-            }
-        }*/
+        do
+        {
+            FireServerRPC();
+
+            yield return timeToWait;
+        } while (HoldFire);
     }
 }

@@ -12,5 +12,5 @@ public abstract class Weapon : NetworkBehaviour
     public bool IsActive { get; set; }
     public bool HoldFire { get; set; }
 
-    public abstract void Damage();
+    public abstract void Fire();
 }

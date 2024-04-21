@@ -199,17 +199,6 @@ public partial class @MainInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""bb345df8-4161-4863-a4c8-b5c06cbeeade"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Dodge"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""8fb84dd4-397a-4ca2-a228-7f2e3f25cde2"",
                     ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",

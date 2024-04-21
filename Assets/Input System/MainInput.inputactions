@@ -1,5 +1,5 @@
 {
-    "name": "PlayerControls",
+    "name": "MainInput",
     "maps": [
         {
             "name": "Player",
@@ -172,17 +172,6 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "bb345df8-4161-4863-a4c8-b5c06cbeeade",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Dodge",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
