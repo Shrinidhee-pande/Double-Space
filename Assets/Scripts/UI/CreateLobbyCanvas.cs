@@ -35,7 +35,7 @@ public class CreateLobbyCanvas : CanvasScript
         }
     }
     private void ChangeGameMode()
-    {
+    {/*
         switch (gameMode)
         {
             default:
@@ -45,7 +45,7 @@ public class CreateLobbyCanvas : CanvasScript
             case Mode.Survival:
                 gameMode = Mode.Sabotage;
                 break;
-        }
+        }*/
         mode.GetComponentInChildren<TextMeshProUGUI>().text = gameMode.ToString();
         LobbyData.Instance.SetGameMode(gameMode.ToString());
     }

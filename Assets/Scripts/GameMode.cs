@@ -2,21 +2,18 @@ using UnityEngine;
 
 public enum Mode
 {
-    Sabotage,
-    Survival
+    Sabotage
 }
 
 public class GameMode : MonoBehaviour
 {
     public static GameMode Instance;
-    public string objectiveDescription;
     public float timeToComplete;
     public int enemies;
-    public int enemiesKilled;
     public Mode mode;
     public bool ObjectiveMet { get; set; } = false;
 
-    private float currentTime;
+
     private void Start()
     {
         if (Instance != null)
@@ -24,25 +21,17 @@ public class GameMode : MonoBehaviour
             Destroy(gameObject);
         }
         Instance = this;
-        currentTime = timeToComplete + Time.deltaTime;
     }
 
     private void Update()
     {
         if (mode == Mode.Sabotage)
         {
-            if (enemies == enemiesKilled)
+            if (enemies <= SpawnManager.enemiesKilled)
             {
-                ObjectiveMet = true;
+                GameMode.Instance.ObjectiveMet = true;
                 GameManager.Instance.currentState = GameState.GameOver;
-            }
-        }
-        else if(mode == Mode.Survival)
-        {
-            currentTime--;
-            if (currentTime < 0) {
-                ObjectiveMet = true;
-                GameManager.Instance.currentState = GameState.GameOver;
+                SpawnManager.enemiesKilled = 0;
             }
         }
     }

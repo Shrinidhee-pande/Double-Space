@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Generic;
 using TMPro;
 using Unity.Services.Authentication;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class JoinedLobbyCanvas : CanvasScript
@@ -44,7 +42,11 @@ public class JoinedLobbyCanvas : CanvasScript
 
     private async void StartGame()
     {
-        if (!IsHost()) { ready.interactable = false; }
+        if (!IsHost())
+        {
+            ready.interactable = false;
+            return;
+        }
         GameMode.Instance.mode = gameMode;
         string relayCode = await RelayControl.Instance.CreateRelay();
         UpdateLobbyOptions options = new UpdateLobbyOptions
@@ -91,7 +93,7 @@ public class JoinedLobbyCanvas : CanvasScript
     }
 
     private void ChangeGameMode()
-    {
+    {/*
         switch (gameMode)
         {
             default:
@@ -101,7 +103,7 @@ public class JoinedLobbyCanvas : CanvasScript
             case Mode.Survival:
                 gameMode = Mode.Sabotage;
                 break;
-        }
+        }*/
         mode.GetComponentInChildren<TextMeshProUGUI>().text = gameMode.ToString();
         LobbyData.Instance.SetGameMode(gameMode.ToString());
     }
@@ -123,7 +125,6 @@ public class JoinedLobbyCanvas : CanvasScript
                 {
                     if (!IsHost())
                     {
-                        SceneManager.LoadScene(1);
                         RelayControl.Instance.JoinRelay(lobby.Data["RelayCode"].Value);
                     }
                 }
@@ -155,7 +156,7 @@ public class JoinedLobbyCanvas : CanvasScript
             Destroy(text.gameObject);
         }
         Lobby lobby = LobbyData.Instance.GetLobby();
-        for (int i = 0; i<lobby.Players.Count; i++)
+        for (int i = 0; i < lobby.Players.Count; i++)
         {
             GameObject t = Instantiate(prefab, content);
             TextMeshProUGUI tText = t.GetComponentInChildren<TextMeshProUGUI>();

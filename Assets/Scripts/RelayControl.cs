@@ -5,6 +5,7 @@ using Unity.Networking.Transport.Relay;
 using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RelayControl : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class RelayControl : MonoBehaviour
     {
         try
         {
+            ChangeScene();
             Allocation allocation = await RelayService.Instance.CreateAllocationAsync(1);
 
             RelayServerData relayData = new RelayServerData(allocation, "wss");
@@ -42,10 +44,16 @@ public class RelayControl : MonoBehaviour
         }
     }
 
+    private static void ChangeScene()
+    {
+        GameManager.Instance.currentState = GameState.JoinGame;
+    }
+
     public async void JoinRelay(string joinCode)
     {
         try
         {
+            ChangeScene();
             JoinAllocation allocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
 
             RelayServerData relayData = new RelayServerData(allocation, "wss");

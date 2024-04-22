@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
@@ -18,8 +17,11 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-        currentPlayer = GetComponent<EnemyBrain>().nearestPlayer;
-        MoveToPlayer(currentPlayer.position);
+        currentPlayer = GetComponent<EnemyBrain>().NearestPlayer;
+        if (currentPlayer != null)
+        {
+            MoveToPlayer(currentPlayer.position);
+        }
     }
 
     private void MoveToPlayer(Vector3 position)

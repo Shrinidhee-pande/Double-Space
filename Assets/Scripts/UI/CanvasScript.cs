@@ -10,9 +10,8 @@ public abstract class CanvasScript : MonoBehaviour
     {
         if (nextCanvas != null)
         {
-            nextCanvas.enabled = true; 
-            GetComponent<Canvas>().enabled = false;
-
+            nextCanvas.gameObject.SetActive(true); 
+            gameObject.SetActive(false);
         }
     }
 
@@ -20,8 +19,8 @@ public abstract class CanvasScript : MonoBehaviour
     {
         if (previousCanvas != null)
         {
-            previousCanvas.enabled = true;
-            GetComponent<Canvas>().enabled = false;
+            previousCanvas.gameObject.SetActive(true);
+            gameObject.SetActive(false);
         }
     }
 }

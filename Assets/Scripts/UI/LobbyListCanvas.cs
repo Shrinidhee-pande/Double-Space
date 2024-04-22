@@ -25,8 +25,8 @@ public class LobbyListCanvas : CanvasScript
 
     private void ShowJoinCanvas()
     {
-        joinCanvas.enabled = true;
-        GetComponent<Canvas>().enabled = false;
+        joinCanvas.gameObject.SetActive(true);
+        gameObject.SetActive(false);
     }
 
     public async void ListLobbies()

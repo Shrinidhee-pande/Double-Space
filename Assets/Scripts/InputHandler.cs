@@ -11,6 +11,7 @@ public class InputHandler : NetworkBehaviour
 
     [SerializeField] private CinemachineVirtualCamera thisCamera;
     [SerializeField] private AudioListener listener;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     private MainInput inputs;
     private PlayerMovement movement;
@@ -35,6 +36,8 @@ public class InputHandler : NetworkBehaviour
         {
             thisCamera.Priority = 0;
         }
+        Camera.main.GetComponent<AudioListener>().enabled = false;
+        spriteRenderer.sprite = PlayerData.Instance.GetShip();
     }
 
     private void OnEnable()
